@@ -1,0 +1,47 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  margin: 25px;
+  width: 250px;
+  height: 90%;
+  border: 1px solid whitesmoke;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.product img {
+  object-fit: contain;
+  width: 80px;
+  height: 120px;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+}
+
+mat-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+strong {
+  position: absolute;
+  right: 5px;
+  bottom: 45px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-error {
+  text-align: center;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,129 @@
+<!-- Guitar Card -->
+<mat-card [id]="guitar._id" class="product">
+  <p>{{ guitar.name }}</p>
+  <p>{{ guitar.category.name }}</p>
+  <img [src]="guitar.picture" [alt]="guitar.name + 'Image'" />
+  <strong
+    >Price: <br />
+    {{ guitar.price }}$</strong
+  >
+  <!-- Purchase -->
+  <mat-icon
+    *ngIf="data?.user?.role == 'user'"
+    mat-button
+    (click)="openPurchaseDialog()"
+    >shopping_cart
+  </mat-icon>
+  <!--  -->
+
+  <mat-icon
+    (click)="openEditDialog()"
+    *ngIf="data.user?.role == 'admin'"
+    mat-button
+    >create
+  </mat-icon>
+</mat-card>
+<!--  -->
+
+<!--Add To Cart Dialog  -->
+<ng-template #addToCartDialog>
+  <h1 matDialogTitle>{{ guitar.name }}</h1>
+  <p>{{ guitar.category.name }}</p>
+  <h5>Price: {{ guitar.price }}</h5>
+  <mat-dialog-actions align="end">
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" #amount />
+    </mat-form-field>
+    <p *ngIf="amount.value * guitar.price > 0">
+      Total Price: {{ amount.value * guitar.price }}
+    </p>
+    <mat-error *ngIf="cartErrorMessage?.error">{{
+      cartErrorMessage.message
+    }}</mat-error>
+    <button
+      (click)="addToCart(guitar._id, amount.value)"
+      color="primary"
+      mat-raised-button
+    >
+      Add to cart
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+<!--  -->
+
+<!-- Edit Item Dialog -->
+<ng-template class="edit-product-dialog" #editProductDialog>
+  <h1 matDialogTitle>Edit {{ guitar.name }}</h1>
+  <form
+    (ngSubmit)="
+      admin.editProduct(
+        guitar._id,
+        name.value,
+        select.value,
+        price.value,
+        picture.value
+      )
+    "
+    class="edit-product-form"
+    [formGroup]="editProductForm"
+  >
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        #name
+        matInput
+        formControlName="name"
+        [value]="guitar.name"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Current Category - {{ guitar.category.name }}</mat-label>
+      <mat-select #select formControlName="category">
+        <mat-option
+          [id]="category._id"
+          [value]="category._id"
+          *ngFor="let category of data.categories"
+        >
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Current Price - {{ guitar.price }}</mat-label>
+      <input
+        #price
+        matInput
+        formControlName="price"
+        [value]="guitar.price"
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input
+        #picture
+        matInput
+        formControlName="picture"
+        [value]="guitar.picture"
+        type="text"
+      />
+    </mat-form-field>
+    <mat-error *ngIf="data.editProductError?.error">{{
+      data.editProductError.message
+    }}</mat-error>
+    <div class="btns-container d-flex justify-content-evenly">
+      <button (click)="dialog.closeAll()" mat-raised-button color="warn">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        Edit Product
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<!--  -->

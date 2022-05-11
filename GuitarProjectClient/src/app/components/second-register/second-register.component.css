@@ -1,0 +1,24 @@
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+.register-title {
+  text-align: center;
+}
+
+.register-input {
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+.register-btn {
+  width: 150px;
+}
+
+main {
+  border: 5px solid black;
+  height: 70%;
+}
+
+

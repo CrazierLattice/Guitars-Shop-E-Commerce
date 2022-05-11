@@ -1,0 +1,42 @@
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+.register-title {
+  text-align: center;
+}
+
+.register-input {
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+.register-btn {
+  width: 150px;
+  position: relative;
+  top: 30px;
+}
+
+main {
+  border: 5px solid black;
+  height: 500px;
+}
+
+.go-to-login {
+  position: relative;
+  top: 25px;
+  text-align: center;
+}
+
+.password-error {
+  color: red;
+  text-align: center;
+  border: 1px solid red;
+}
+
+mat-icon {
+  position: absolute;
+  right: 12px;
+  top: 0;
+}

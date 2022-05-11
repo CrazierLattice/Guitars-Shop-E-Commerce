@@ -1,0 +1,107 @@
+<header>
+    <div class="logo-container d-flex flex-column">
+        <img width="150" src="https://www.wildguitars.co.il/wp-content/uploads/2019/05/logo.png" alt="Image">
+    </div>
+    <div class="contact">
+        <h2>Contact Us - +9271231232</h2>
+        <div class="user-panel d-flex justify-content-between">
+            <p *ngIf="data.user">Welcome, {{ data.user.first_name }}</p>
+            <button mat-flat-button color="warn" (click)="login.logout()">
+                Logout
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="container d-flex">
+    <div class="cart-details">
+        <header class="d-flex justify-content-between">
+            <div class="d-flex flex-column">
+
+                <mat-form-field>
+                    <mat-label>Search Products..</mat-label>
+                    <input (input)="markMatchedValues($event)" matInput>
+                </mat-form-field>
+                <button routerLink="/main" mat-raised-button color="primary">Back to shop</button>
+            </div>
+        </header>
+        <div class="products-container container">
+            <mat-card *ngFor="let product of data?.productsInCart" class="product">
+                <p [highlight]="search_values">
+
+
+                    Name: {{product?.guitar.name}}
+
+                </p>
+                <p [highlight]="search_values">
+
+                    Amount: {{product?.amount}}
+
+                </p>
+                <p [highlight]="search_values">
+
+                    Price: {{product?.price}}$
+                </p>
+                <p [highlight]="search_values">
+
+
+                    Total Price: {{product?.price}}
+
+                </p>
+            </mat-card>
+            <p class="total-pay">Total to pay: {{data?.totalPrice}}</p>
+        </div>
+    </div>
+    <div class="form-order ">
+        <form class="d-flex  flex-column" [formGroup]="orderForm" (ngSubmit)="orderSubmit()">
+            <mat-form-field>
+                <mat-label>Delivery City</mat-label>
+                <input (dblclick)="handleDoubleClick()" matInput formControlName="delivery_city" type="text">
+                <mat-error *ngIf="orderForm.controls?.delivery_city?.errors?.required">
+                    Delivery City is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Delivery Street</mat-label>
+                <input (dblclick)="handleDoubleClick()" matInput formControlName="delivery_street" type="text">
+                <mat-error *ngIf="orderForm.controls?.delivery_street?.errors?.required">
+                    Delivery Street is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Delivery Date</mat-label>
+                <input formControlName="delivery_date" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="orderForm.controls?.delivery_date?.errors?.required">
+                    Delivery Date is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Credit Card</mat-label>
+                <input matInput placeholder="xxx-xxx-xxx-xxx" formControlName="credit_card">
+                <mat-error *ngIf="orderForm.controls?.credit_card?.errors?.required">
+                    Credit Card is required!
+                </mat-error>
+                <mat-error *ngIf="orderForm.controls?.credit_card?.errors?.minlength">Credit card must be atleast 12
+                    letters</mat-error>
+                <mat-error *ngIf="orderForm.controls?.credit_card?.errors?.maxlength">Credit card must be atleast 12
+                    letters</mat-error>
+                <mat-error *ngIf="orderForm.controls?.credit_card?.errors?.pattern">Numbers only</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="data.orderMessage?.error">{{data.orderMessage.message}}</mat-error>
+            <button color="primary" class="mt-4" [disabled]="orderForm.invalid" mat-raised-button>Order</button>
+
+
+        </form>
+
+    </div>
+</main>
+
+
+<ng-template class="d-flex flex-column" #orderSuccess>
+    <h2>Thank you for your order.</h2>
+    <h4>You can view your reception by opening the downloaded file</h4>
+    <button class="main-page-btn" (click)="closeOrderModal()" mat-raised-button color="primary">Click here to go back to
+        the main page</button>
+</ng-template>

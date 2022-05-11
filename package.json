@@ -1,0 +1,21 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Admin Account\r username : crazierlattice@gmail.com\r passowrd: 1331",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd GuitarProjectServer && npm install && cd ../GuitarProjectClient && npm install && npm run build",
+    "start": "node GuitarProjectServer/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrazierLattice/Guitar-Shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CrazierLattice/Guitar-Shop/issues"
+  },
+  "homepage": "https://github.com/CrazierLattice/Guitar-Shop#readme"
+}

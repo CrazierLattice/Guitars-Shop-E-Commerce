@@ -1,0 +1,59 @@
+<main class="container">
+  <form (ngSubmit)="registryValidation()" [formGroup]="firstRegistryForm" class="register-form-container">
+    <h2 class="register-title register-input">Registry - Step One</h2>
+    <mat-form-field class="register-input">
+      <mat-label>ID</mat-label>
+      <input matInput type="number" formControlName="ID" />
+      <mat-icon>perm_identity</mat-icon>
+      <mat-hint>Enter your ID</mat-hint>
+      <mat-error *ngIf="firstRegistryForm.controls.ID.errors?.required">ID must is required</mat-error>
+      <mat-error *ngIf="
+          firstRegistryForm.controls.ID.errors?.minlength ||
+          firstRegistryForm.controls.ID.errors?.maxlength
+        ">
+        ID must contain 9 letters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="register-input">
+      <mat-label>Email</mat-label>
+      <input placeholder="example@gmail.com" matInput type="email" ngModel email formControlName="email" />
+      <mat-icon>email</mat-icon>
+      <mat-error *ngIf="firstRegistryForm.controls.email.errors?.required">E-Mail Is required</mat-error>
+      <mat-error *ngIf="firstRegistryForm.controls.email.errors?.email">Please enter a valid E-Mail</mat-error>
+      <mat-hint>Enter Your Email</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="register-input">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-icon>https</mat-icon>
+      <mat-hint>Enter Your Password</mat-hint>
+      <mat-error *ngIf="firstRegistryForm.controls.password.errors?.required">Password must is required</mat-error>
+      <mat-error *ngIf="firstRegistryForm.controls.password.errors?.minlength">Password must be atleast 6 length
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="register-input">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" />
+      <mat-icon>https</mat-icon>
+      <mat-hint>Confirm Your Password</mat-hint>
+      <mat-error *ngIf="firstRegistryForm.controls.confirmPassword.errors?.required">Confirm Password must is required
+      </mat-error>
+      <mat-error *ngIf="firstRegistryForm.controls.confirmPassword.errors?.minlength">Confirm Password must be atleast 6
+        length</mat-error>
+    </mat-form-field>
+    <mat-error class="register-input" *ngIf="data.registryMessage?.error">
+      {{ data.registryMessage.message }}
+    </mat-error>
+    <mat-error class="register-input" *ngIf="passwordNotMatching?.length">
+      {{ passwordNotMatching }}
+    </mat-error>
+    <button [disabled]="firstRegistryForm.invalid" mat-flat-button color="primary" class="register-input register-btn"
+      type="submit">
+      Continue
+    </button>
+    <p class="register-input go-to-login">
+      Already registered? click
+      <a routerLink="/login">here</a> to login.
+    </p>
+  </form>
+</main>

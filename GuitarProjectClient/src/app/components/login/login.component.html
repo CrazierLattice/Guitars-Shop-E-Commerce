@@ -1,0 +1,69 @@
+<div class="login-container">
+  <header>
+    <img width="150" src="https://www.wildguitars.co.il/wp-content/uploads/2019/05/logo.png" alt="Image">
+    <div class="contact">
+      <h2>Contact Us - +9271231232</h2>
+
+      <p *ngIf="data.user">Welcome, {{ data.user.first_name }}</p>
+      <p *ngIf="!data.user">Welcome, Guest</p>
+    </div>
+  </header>
+  <main class="d-flex justify-content-around">
+    <form class="main-child d-flex justify-content-around flex-column" (ngSubmit)="handleLogin()"
+      [formGroup]="loginForm">
+      <h2 class="login-title login-input">Login</h2>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input [disabled]="data?.user?._id?.length" class="login-input" matInput formControlName="username"
+          type="text" />
+        <mat-icon>account_circle</mat-icon>
+        <mat-error *ngIf="loginForm.controls.username?.errors?.required">Username is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input [disabled]="data?.user?._id?.length" matInput class="login-input" formControlName="password"
+          type="password" />
+        <mat-icon>https</mat-icon>
+        <mat-error *ngIf="loginForm.controls.password?.errors?.required">Password is required</mat-error>
+      </mat-form-field>
+      <button [disabled]="data?.user?._id?.length" class="login-input login-btn mt-2" type="submit" mat-raised-button
+        color="primary">
+        Login
+      </button>
+
+      <button routerLink="/main" (click)="handleAccess()" mat-raised-button color="primary" *ngIf="data.token?.length"
+        class="login-input">
+        Start Shopping
+      </button>
+      <mat-error *ngIf="data.errorMessage?.error">{{data.errorMessage?.message}}</mat-error>
+      <h2>
+        Not registered yet? click
+        <a routerLink="/first-register">here</a> to register.
+      </h2>
+    </form>
+
+    <div class="main-child about">
+      <img class="about-img" width="150" src="https://www.wildguitars.co.il/wp-content/uploads/2019/05/logo.png"
+        alt="Image">
+      <p>
+
+        The most popular guitars on the market at prices that suit everyone! <br>
+        Come and visit our showroom at Tel-Aviv St. Even Gbirol 72 and test out any guitar of your choice <br>
+        or simply purchase one of our products through our website!
+      </p>
+
+    </div>
+
+    <div class="main-child store-details">
+      <p class="store-details-p">
+        Available products in our store: {{ data.totalProducts }}
+      </p>
+      <p class="store-details-p">
+        Number of orders in our store: {{ data.totalOrders }}
+      </p>
+      <p *ngIf="data?.lastUserAction?.type?.length && data.user.role == 'user'" class="store-details-p">
+        {{ data.lastUserAction.message }}
+      </p>
+    </div>
+  </main>
+</div>

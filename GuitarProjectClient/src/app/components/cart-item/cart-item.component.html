@@ -1,0 +1,17 @@
+<mat-card class="container  ">
+  <p>
+    <strong>
+      Name: {{ product.guitar.name }}
+    </strong>
+  </p>
+  <p> <strong>
+      Amount: {{ product.amount }}
+    </strong>
+  </p>
+  <p>
+    <strong>
+      Price: {{ product.price }}$
+    </strong>
+  </p>
+  <mat-icon (click)="deleteItemFromCart()">delete</mat-icon>
+</mat-card>

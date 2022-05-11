@@ -1,0 +1,47 @@
+<form (ngSubmit)="register()" class="container" [formGroup]="secondRegistryForm" class="register-form-container">
+  <h2 class="register-title register-input">Registry - Step Two</h2>
+  <mat-form-field class="register-input">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="first_name" type="text" />
+    <mat-error *ngIf="secondRegistryForm.controls.first_name?.errors?.required">
+      First Name is required.
+    </mat-error>
+    <mat-error *ngIf="secondRegistryForm.controls.first_name?.errors?.minlength">
+      First Name must contain atleast 3 letters
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="register-input">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="last_name" type="text" />
+    <mat-error *ngIf="secondRegistryForm.controls.last_name?.errors?.required">Last Name is required</mat-error>
+    <mat-error *ngIf="secondRegistryForm.controls.last_name?.errors?.minlength">Last Name must contain atleast 3 letters
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="register-input">
+    <mat-label>City</mat-label>
+    <mat-select formControlName="city">
+      <mat-option *ngFor="let city of _register.citiesArray" [value]="city">
+        {{city}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="secondRegistryForm.controls.city?.errors?.required">
+      City is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="register-input">
+    <mat-label>Street</mat-label>
+    <input matInput formControlName="street" type="text" />
+    <mat-error *ngIf="secondRegistryForm.controls.street?.errors?.requred">Street is required</mat-error>
+    <mat-error *ngIf="secondRegistryForm.controls.street?.errors?.minlength">Street must contain atleast 3 letters
+    </mat-error>
+  </mat-form-field>
+  <button [disabled]="secondRegistryForm.invalid" mat-flat-button color="primary" class="register-input register-btn"
+    type="submit">
+    Register
+  </button>
+
+  <h4 class="register-input">
+    Already registered? click
+    <a routerLink="/login">here</a> to login.
+  </h4>
+</form>

@@ -1,0 +1,64 @@
+header {
+  margin: 0 auto;
+  height: 130px;
+  display: flex;
+  justify-content: space-around;
+}
+.cart-list-container {
+  width: 10%;
+  border: 2px solid black;
+}
+
+.shop-container {
+  border: 2px solid green;
+}
+
+.buttons {
+  height: 40px;
+}
+
+.example-container {
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.categories-buttons {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.category-btn {
+  height: 40px;
+}
+
+mat-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.drawer-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mat-drawer-container {
+  background-color: whitesmoke;
+}
+
+mat-drawer {
+  background-color: whitesmoke;
+}

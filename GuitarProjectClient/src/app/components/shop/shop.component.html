@@ -1,0 +1,7 @@
+<div class="d-flex flex-row flex-wrap shop-container">
+  <app-product-item
+    [drawer]="drawer"
+    *ngFor="let guitar of data.guitars"
+    [guitar]="guitar"
+  ></app-product-item>
+</div>

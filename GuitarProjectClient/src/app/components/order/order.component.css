@@ -1,0 +1,39 @@
+header {
+    margin: 0 auto;
+    height: 130px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  main {
+      height: 75%;
+  }
+  .cart-details {
+      width: 50%;
+      height: 100%;
+      border: 2px solid black;
+    }
+    
+    .form-order {
+        width: 50%;
+        height: 100%;
+        border: 2px solid green;
+  }
+
+  .products-container {
+      overflow: auto;
+      height: 65%;
+  }
+
+  .product {
+      border: 2px solid whitesmoke;
+  }
+
+mark {
+    background-color: yellow  !important;
+}
+
+p{
+    font-weight: bold;
+}

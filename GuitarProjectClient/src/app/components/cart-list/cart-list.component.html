@@ -1,0 +1,84 @@
+<div *ngIf="data?.user?.role == 'user'" class="cart-list-container">
+  <div
+    *ngIf="data.productsInCart?.length"
+    class="order-buttons-container justify-content-between d-flex"
+  >
+    <button mat-flat-button color="primary" routerLink="/order">ORDER</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="cart.deleteAllItemsFromCart()"
+    >
+      Delete All
+    </button>
+  </div>
+  <app-cart-item
+    *ngFor="let product of data.productsInCart"
+    [product]="product"
+  >
+  </app-cart-item>
+  <p class="total-pay mt-5" *ngIf="data.productsInCart?.length">
+    <strong> Total to pay - {{ data.totalPrice }}$ </strong>
+  </p>
+  <p *ngIf="!data.productsInCart?.length">Your cart is empty!</p>
+</div>
+
+<div *ngIf="data?.user?.role == 'admin'" class="admin-panel">
+  <h1>Add New Item</h1>
+  <form
+    (ngSubmit)="addNewProduct(addItemForm.value, formDirective)"
+    class="d-flex flex-column"
+    #formDirective="ngForm"
+    [formGroup]="addItemForm"
+  >
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput type="text" />
+      <mat-error *ngIf="addItemForm.controls.name?.errors?.required"
+        >Name is required</mat-error
+      >
+      <mat-error *ngIf="addItemForm.controls.name?.errors?.minlength">
+        Name must contain atleast 4 letters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select #select formControlName="category">
+        <mat-option
+          [id]="category._id"
+          [value]="category._id"
+          *ngFor="let category of data.categories"
+        >
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addItemForm.controls.category?.errors?.required"
+        >Category is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input formControlName="price" matInput type="number" />
+      <mat-error *ngIf="addItemForm.controls.price?.errors?.required"
+        >Price is required
+      </mat-error>
+      <mat-error *ngIf="addItemForm.controls.price?.errors?.min"
+        >Price must be greater than 0</mat-error
+      >
+      <mat-error *ngIf="addItemForm.controls.price?.errors?.minlength"
+        >Price must contain atleast 3 letters</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput formControlName="picture" type="text" />
+      <mat-error *ngIf="addItemForm.controls.picture?.errors?.required"
+        >Image is required</mat-error
+      >
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="primary">
+      Create New Product
+    </button>
+  </form>
+</div>

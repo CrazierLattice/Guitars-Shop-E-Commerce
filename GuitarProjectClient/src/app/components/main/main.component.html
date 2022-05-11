@@ -1,0 +1,47 @@
+<header>
+  <div class="logo-container d-flex flex-column">
+    <img width="150" src="https://www.wildguitars.co.il/wp-content/uploads/2019/05/logo.png" alt="Image">
+  </div>
+  <div class="contact">
+    <h2>Contact Us - +9271231232</h2>
+    <div class="user-panel d-flex justify-content-between">
+      <p *ngIf="data.user">Welcome, {{ data.user.first_name }}</p>
+      <button mat-flat-button color="warn" (click)="login.logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+</header>
+<div class="d-flex justify-content-evenly flex-wrap">
+  <mat-form-field class="d-flex flex-column">
+    <mat-label>Search Products..</mat-label>
+    <input matInput (input)="handleSearch($event.target.value)" type="text" />
+    <mat-icon>search</mat-icon>
+  </mat-form-field>
+  <button mat-flat-button color="primary" class="buttons" *ngFor="let category of data.categories" [id]="category._id"
+    (click)="getProductsForCategory(category._id)">
+    {{ category.name }}
+  </button>
+  <button mat-flat-button color="primary" class="buttons" *ngIf="!drawer.opened && data?.user?.role == 'user'"
+    (click)="drawer.toggle()">
+    Open cart
+  </button>
+  <button mat-flat-button color="primary" class="buttons" *ngIf="drawer.opened && data?.user?.role == 'user'"
+    (click)="data.addProductMessage = undefined" (click)="drawer.toggle()">
+    Close cart
+  </button>
+  <button mat-flat-button color="primary" class="buttons" *ngIf="!drawer.opened && data?.user?.role == 'admin'"
+    (click)="data.addProductMessage = undefined" (click)="drawer.toggle()">
+    Open Admin Panel
+  </button>
+  <button mat-flat-button color="primary" class="buttons" *ngIf="drawer.opened && data?.user?.role == 'admin'"
+    (click)="drawer.toggle()">
+    Close Admin Panel
+  </button>
+</div>
+<mat-drawer-container class="container" autosize>
+  <app-shop [drawer]="drawer"></app-shop>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <app-cart-list [drawer]="drawer"></app-cart-list>
+  </mat-drawer>
+</mat-drawer-container>

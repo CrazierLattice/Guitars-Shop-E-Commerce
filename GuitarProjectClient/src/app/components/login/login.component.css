@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+header {
+  height: 100px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.about-img {
+  display: block;
+  margin: 0 auto;
+}
+
+.login-btn {
+  width: 50px;
+}
+
+.main-child {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 30%;
+  margin: auto;
+  font-family: "Roboto Mono", monospace;
+}
+
+.hide-shopping {
+  display: none;
+}
+
+input {
+  height: 30px;
+}
+
+mat-icon {
+  position: absolute;
+  right: 0;
+  top: 9px;
+}
+
+.store-details-p {
+  text-align: center;
+}
