@@ -8,7 +8,8 @@ Admin Account
 username : crazierlattice@gmail.com
 passowrd: 1331
 
-In index.js at line 13 "insert_data_to_db()" initiates the db - make sure to run this once and then comment out this line before running the project.
+If it is your first time running this project - run http://localhost:5000/seed in order to render the first database
+
 
 Login Page
 
