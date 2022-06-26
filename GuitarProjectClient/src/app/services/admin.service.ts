@@ -36,6 +36,24 @@ export class AdminService {
       );
   }
 
+  public deleteProduct(productId: string) {
+    this.http
+      .delete(`${environment.apiUrl}/admin/delete-product/${productId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'xx-auth': this.data.token,
+        },
+      })
+      .subscribe(
+        (res) => {
+          this.main.getAllGuitars();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
   public editProduct(productId, name, category, price, picture) {
     this.http
       .put(
@@ -61,6 +79,7 @@ export class AdminService {
         },
         (err) => {
           this.data.editProductError = err.error;
+
           console.log(err);
         }
       );

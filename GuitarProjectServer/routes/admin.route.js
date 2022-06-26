@@ -52,4 +52,23 @@ adminRoute.put(
   }
 );
 
+//Delete product
+
+adminRoute.delete(
+  '/delete-product/:productId',
+  verifyAdminToken,
+  async (req, res) => {
+    const { productId } = req.params;
+
+    try {
+      await guitarModel.findOneAndDelete({ _id: productId });
+      res
+        .status(200)
+        .json({ err: false, message: 'Product deleted successfully' });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export default adminRoute;

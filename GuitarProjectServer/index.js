@@ -31,15 +31,4 @@ app.use(express.static(path.join(_dirname, '/GuiltarProjectClient/build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(_dirname + '/GuitarProjectClient/dist/index.html'));
 });
-
-// app.get("/", async (req, res) => {
-//   await guitarModel
-//     .find()
-//     .then((products) => {
-//       res.status(200).json({ error: false, products });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
 app.listen(port, () => console.log(`Running on port ${port} `));

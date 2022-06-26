@@ -16,12 +16,22 @@
   </mat-icon>
   <!--  -->
 
-  <mat-icon
-    (click)="openEditDialog()"
-    *ngIf="data.user?.role == 'admin'"
-    mat-button
-    >create
-  </mat-icon>
+  <div class="admin-icons">
+    <mat-icon
+      class="admin-icon"
+      (click)="openEditDialog()"
+      *ngIf="data.user?.role == 'admin'"
+      mat-button
+      >create
+    </mat-icon>
+    <mat-icon
+      class="admin-icon"
+      (click)="deleteProduct(guitar._id)"
+      *ngIf="data.user?.role == 'admin'"
+      mat-button
+      >delete
+    </mat-icon>
+  </div>
 </mat-card>
 <!--  -->
 

@@ -19,10 +19,18 @@ mat-icon:hover {
   cursor: pointer;
 }
 
-mat-icon {
+.admin-icons {
+  display: flex;
+  justify-content: space-evenly;
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  bottom: 0;
+  right: 0;
+}
+
+mat-icon {
+  /* position: relative;
+  left: 180px;
+  top: 70px; */
 }
 
 strong {

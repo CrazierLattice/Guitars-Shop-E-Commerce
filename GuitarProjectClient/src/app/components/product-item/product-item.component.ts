@@ -10,10 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import MessageInterface from 'src/app/interfaces/message.interface';
-import {
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -28,7 +25,7 @@ export class ProductItemComponent implements OnInit {
     public dialog: MatDialog,
     public admin: AdminService,
     private fb: FormBuilder
-  ) { }
+  ) {}
   @Input() public guitar: GuitarInterface;
   @ViewChild('addToCartDialog') addToCartDialog: TemplateRef<any>;
   @ViewChild('editProductDialog') editProductDialog: TemplateRef<any>;
@@ -39,7 +36,7 @@ export class ProductItemComponent implements OnInit {
   openPurchaseDialog() {
     this.cartErrorMessage = null;
     if (!this.data.cartData) {
-      this.cart.createNewCart(this.data.user._id)
+      this.cart.createNewCart(this.data.user._id);
     }
     this.dialog.open(this.addToCartDialog);
   }
@@ -47,6 +44,10 @@ export class ProductItemComponent implements OnInit {
   openEditDialog() {
     this.data.editProductError = null;
     this.dialog.open(this.editProductDialog);
+  }
+
+  public deleteProduct(productId) {
+    this.admin.deleteProduct(productId);
   }
 
   public addToCart(id: string, amount: number) {
